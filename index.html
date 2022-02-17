@@ -5,17 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-    <title>Document</title>
+    <title>Todo App</title>
 </head>
 <body>
     <header>
-
+        <h1>todos</h1>
     </header>
-    <body> 
-
-    </body>
+    <main>
+        <div class="input">
+            <input class="new-item" placeholder="What needs to be done?">
+        </div>
+        <ul class="list">
+            <template id="template-item">
+                <li class="todo-item">
+                    <input type="checkbox" class="todo-checkbox">
+                    <span class="todo-text"></span>
+                    <button class="todo-delete">Delete</button>
+                </li>
+            </template>
+        </ul>
+        <div class="actions">
+            <span class="counter"></span>
+            <ul class="filter">
+                <li><button>All</button></li>
+                <li><button>Active</button></li>
+                <li><button>Completed</button></li>
+            </ul>
+            <button class="clear-completed">Clear Completed</button>
+        </div>
+    </main>
     <footer>
-        
+        <p>copyright info and such imporant stuffs</p>
     </footer>
 </body>
 </html>
