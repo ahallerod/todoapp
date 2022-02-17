@@ -4,38 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <title>Todo App</title>
 </head>
 <body>
-    <header>
-        <h1>todos</h1>
-    </header>
-    <main>
-        <div class="input">
-            <input class="new-item" placeholder="What needs to be done?">
-        </div>
-        <ul class="list">
-            <template id="template-item">
+    <div id="wrapper">
+        <header>
+            <h1>todos</h1>
+        </header>
+        <main>
+            <form id="input-form">
+                <input id="new-item" placeholder="What needs to be done?">
+            </form>
+            <ul id="todo-list">
+                <template id="template-item">
+                    <li class="todo-item">
+                        <input type="checkbox" class="todo-checkbox">
+                        <span class="todo-text">1st todo item</span>
+                        <button class="todo-delete">Delete</button>
+                    </li>
+                </template>
                 <li class="todo-item">
                     <input type="checkbox" class="todo-checkbox">
-                    <span class="todo-text"></span>
+                    <span class="todo-text">1st todo item</span>
                     <button class="todo-delete">Delete</button>
                 </li>
-            </template>
-        </ul>
-        <div class="actions">
-            <span class="counter"></span>
-            <ul class="filter">
-                <li><button>All</button></li>
-                <li><button>Active</button></li>
-                <li><button>Completed</button></li>
+                <li class="todo-item">
+                    <input type="checkbox" class="todo-checkbox">
+                    <span class="todo-text">1st todo item</span>
+                    <button class="todo-delete">Delete</button>
+                </li>
             </ul>
-            <button class="clear-completed">Clear Completed</button>
-        </div>
-    </main>
-    <footer>
-        <p>copyright info and such imporant stuffs</p>
-    </footer>
+            <div class="actions hidden">
+                <span class="counter"></span>
+                <ul class="filter">
+                    <li><button>All</button></li>
+                    <li><button>Active</button></li>
+                    <li><button>Completed</button></li>
+                </ul>
+                <button class="clear-completed">Clear Completed</button>
+            </div>
+        </main>
+        <footer>
+            <p>copyright info and such imporant stuffs</p>
+        </footer>
+    </div>
 </body>
 </html>
