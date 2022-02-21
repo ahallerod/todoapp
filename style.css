@@ -65,7 +65,7 @@ main {
     text-align: center;
 }
 
-.counter{
+#counter{
     float: left;
     text-align: left;
     margin-left: 20px;
@@ -77,12 +77,12 @@ main {
     list-style: none;
 }
 
-.clear-completed{
+#clear-completed{
     position: relative;
     float: right;
 }
 
-.active{
+.actions ul.filter li .active{
     border: 1px solid rgba(175, 47, 47, 0.2);
     padding: 10px;
     margin: 10px;
