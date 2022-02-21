@@ -38,9 +38,11 @@ function createNewTodo(event){
     const checkbox = newTodoItem.querySelector('.todo-checkbox');
     checkbox.onclick = event => {
         updateCounter();
+        currentFilterFunction(currentFilter);
     }
 
     
+
 }
 
 
@@ -88,9 +90,12 @@ clearCompletedButton.onclick = event => {
 }
 
 function showAllItems(){
+    
+
     for(let item of allItems){
         item.classList.remove('hidden');
     }
+    currentFilter = 'all';
 }
 
 function updateCounter(){
@@ -109,10 +114,12 @@ function hideCompleted(){
             allItems[i].classList.add('hidden');
         }
     }
+    currentFilter = 'active';
 }
 
 
 function hideNotCompleted(){
+    
     showAllItems()
     for(var i = 0; i < allCheckboxes.length; i++){
         if(allCheckboxes[i].checked == false){
@@ -120,6 +127,7 @@ function hideNotCompleted(){
             allItems[i].classList.add('hidden');
         }
     }
+    currentFilter = 'completed';
 }
 
 function removeCompleted(event){
@@ -131,3 +139,77 @@ function removeCompleted(event){
         }
     }
 }
+
+let currentFilter = '';
+
+function currentFilterFunction(currentFilterPar){
+    if(currentFilterPar == ''){
+        showAllItems();
+    }
+    if(currentFilterPar == 'all'){
+        showAllItems();
+    }
+    if(currentFilterPar == 'active'){
+        hideCompleted();
+    }
+    if(currentFilterPar == 'completed'){
+        hideNotCompleted();
+    }
+}
+
+const checkAllButton = document.querySelector('#checkAllButton');
+checkAllButton.onclick = event =>{
+    if(!allCheckboxesCheck){
+        return;
+    }
+
+    if(checkAllButton.checked == true){
+        checkAllCheckboxes();
+    }
+    else if(checkAllButton.checked == false){
+        uncheckAllCheckboxes();
+        
+    }
+
+    currentFilterFunction(currentFilter);
+    
+}
+
+function checkAllCheckboxes(){
+    for(let checkbox of allCheckboxes){
+        checkbox.checked = true;
+    }
+}
+
+function uncheckAllCheckboxes(){
+    for(let checkbox of allCheckboxes){
+        checkbox.checked = false;
+    }
+}
+
+function allCheckboxesCheck(){
+    for (var i = 0; i < allCheckboxes.length; i++) {
+        if (allCheckboxes[i].checked) {
+          return true;
+        }
+      }
+    return false;
+}
+
+
+// const itemCheckbox = document.querySelector('.todo-checkbox');
+//     itemCheckbox.onclick = event =>{
+//         if(currentFilter == ''){
+//             showAllItems();
+//         }
+//         if(currentFilter == 'all'){
+//             showAllItems();
+//         }
+//         if(currentFilter == 'active'){
+//             hideCompleted();
+//         }
+//         if(currentFilter == 'completed'){
+//             hideNotCompleted();
+//         }
+//     }
+
