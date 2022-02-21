@@ -49,7 +49,67 @@ main {
     text-align: left;
 }
 
-.todo-item .todo-text {
+.todo-delete{
+    background-color: transparent;
+    border: 0;
+}
+
+.todo-delete:hover{
+    cursor: pointer;
+}
+
+.actions{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    text-align: center;
+}
+
+.counter{
+    float: left;
+    text-align: left;
+    margin-left: 20px;
+}
+
+.filter{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+
+.clear-completed{
+    position: relative;
+    float: right;
+}
+
+.active{
+    border: 1px solid rgba(175, 47, 47, 0.2);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10%;
+}
+
+.filter-button{
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid transparent;
+    background-color: transparent;
+    border-radius: 10%;
+}
+
+.clear-completed{
+    background-color: transparent;
+    border: 0;
+}
+
+.clear-completed:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
+.filter li button:hover{
+    border: 1px solid rgba(175, 47, 47, 0.2);
 
 }
 
