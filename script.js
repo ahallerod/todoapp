@@ -21,6 +21,8 @@ function createNewTodo(event){
     let newTodoItem = todoTemplate.content.firstElementChild.cloneNode(true);
     newTodoItem.querySelector('.todo-text').textContent = newTodo.value;
     todoList.append(newTodoItem);
+    
+    newTodo.value = '';
 
     // Update lists
     allItems = document.querySelectorAll('.todo-item');
