@@ -174,6 +174,8 @@ checkAllButton.onclick = event =>{
     }
 
     currentFilterFunction(currentFilter);
+
+    updateCounter();
     
 }
 
