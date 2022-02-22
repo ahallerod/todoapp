@@ -75,7 +75,7 @@ main {
     cursor: pointer;
 }
 
-.actions{
+#action-bar{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
@@ -99,7 +99,7 @@ main {
     float: right;
 }
 
-.actions ul.filter li .active{
+#action-bar ul.filter li .active{
     border: 1px solid rgba(175, 47, 47, 0.2);
     padding: 10px;
     margin: 10px;
@@ -131,5 +131,5 @@ main {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }

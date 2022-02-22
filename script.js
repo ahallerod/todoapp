@@ -5,10 +5,11 @@ const todoTemplate = document.querySelector('#template-item');
 todoTemplate.remove();
 const todoList = document.querySelector('#todo-list');
 const newTodo = document.querySelector('#new-item');
-const newForm = document.querySelector('#input-form');
+const newTodoForm = document.querySelector('#input-form');
+const actionBar = document.querySelector('#action-bar')
 const counter = document.querySelector('#counter');
 
-newForm.onsubmit = event => {
+newTodoForm.onsubmit = event => {
     createNewTodo(event);
 }
 
@@ -27,14 +28,17 @@ function createNewTodo(event){
     // Update lists
     allItems = document.querySelectorAll('.todo-item');
     allCheckboxes = document.querySelectorAll('.todo-item .todo-checkbox');
-    updateCounter()
+    updateCounter();
+    showOrHideActionBar();
 
     const deleteButton = newTodoItem.querySelector('.todo-delete');
     deleteButton.onclick = event => {
-        newTodoItem.remove();
+        deleteItem(newTodoItem);
+        /*newTodoItem.remove();
         allItems = document.querySelectorAll('.todo-item');
         allCheckboxes = document.querySelectorAll('.todo-item .todo-checkbox');
-        updateCounter()
+        updateCounter();
+        showOrHideActionBar();*/
     }
 
     const checkbox = newTodoItem.querySelector('.todo-checkbox');
@@ -42,11 +46,23 @@ function createNewTodo(event){
         updateCounter();
         currentFilterFunction(currentFilter);
     }
-
-    
-
 }
 
+function deleteItem(item){
+    item.remove();
+    allItems = document.querySelectorAll('.todo-item');
+    allCheckboxes = document.querySelectorAll('.todo-item .todo-checkbox');
+    updateCounter();
+    showOrHideActionBar();
+}
+
+function showOrHideActionBar(){
+    if(getAllItems().length == 0){
+        actionBar.classList.add('hidden');
+    } else {
+        actionBar.classList.remove('hidden');
+    }
+}
 
 
 //Hide and show completed/not completed-buttons logic below
@@ -55,8 +71,10 @@ const activeButton = document.querySelector('#hide-completed');
 const completedButton = document.querySelector('#hide-notCompleted');
 const clearCompletedButton = document.querySelector('#clear-completed');
 
-let allItems = document.querySelectorAll('.todo-item');
-//const allItems1 = () => document.querySelectorAll('.todo-item'); Andreas Experiment
+let allItems = document.querySelectorAll('.todo-item'); //TO be removed.
+const getAllItems = () => {
+    return document.querySelectorAll('.todo-item'); //Andreas Experiment: Working!
+ } 
 let allCheckboxes = document.querySelectorAll('.todo-item .todo-checkbox');
 
 
@@ -92,9 +110,7 @@ clearCompletedButton.onclick = event => {
 }
 
 function showAllItems(){
-    
-
-    for(let item of allItems){
+    for(let item of getAllItems()){
         item.classList.remove('hidden');
     }
     currentFilter = 'all';
@@ -113,7 +129,7 @@ function hideCompleted(){
     showAllItems()
     for(var i = 0; i < allCheckboxes.length; i++){
         if(allCheckboxes[i].checked == true){
-            allItems[i].classList.add('hidden');
+            getAllItems()[i].classList.add('hidden');
         }
     }
     currentFilter = 'active';
@@ -121,23 +137,19 @@ function hideCompleted(){
 
 
 function hideNotCompleted(){
-    
     showAllItems()
     for(var i = 0; i < allCheckboxes.length; i++){
         if(allCheckboxes[i].checked == false){
-            // allItems[i].remove();
-            allItems[i].classList.add('hidden');
+            getAllItems()[i].classList.add('hidden');
         }
     }
     currentFilter = 'completed';
 }
 
-function removeCompleted(event){
-    event.preventDefault();
-
-    for(var i = 0; i < allCheckboxes.length; i++){
-        if(allCheckboxes[i].checked == true){
-            allItems[i].remove();
+function removeCompleted(){
+    for(let todo of getAllItems()){
+        if(todo.querySelector('.todo-checkbox:checked') != null){
+            deleteItem(todo);
         }
     }
 }
