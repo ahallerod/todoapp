@@ -1,4 +1,5 @@
 /*---DEFINE-VARIABLES---*/
+
 //DOM variables
 
 const todoTemplate = document.querySelector('#template-item');
@@ -8,6 +9,7 @@ const newTodo = document.querySelector('#new-item');
 const newTodoForm = document.querySelector('#input-form');
 const actionBar = document.querySelector('#action-bar')
 const counter = document.querySelector('#counter');
+const checkAllButton = document.querySelector('#checkAllButton');
 
 newTodoForm.onsubmit = event => {
     createNewTodo(event);
@@ -22,12 +24,13 @@ function createNewTodo(event){
     let newTodoItem = todoTemplate.content.firstElementChild.cloneNode(true);
     newTodoItem.querySelector('.todo-text').textContent = newTodo.value;
     todoList.append(newTodoItem);
-    
     newTodo.value = '';
 
     // Update lists
-    allItems = document.querySelectorAll('.todo-item');
+    allItems = document.querySelectorAll('.todo-item'); //to be removed
     allCheckboxes = document.querySelectorAll('.todo-item .todo-checkbox');
+
+    //Update UI
     updateCounter();
     showOrHideActionBar();
 
@@ -171,7 +174,6 @@ function currentFilterFunction(currentFilterPar){
     }
 }
 
-const checkAllButton = document.querySelector('#checkAllButton');
 checkAllButton.onclick = event =>{
     if(!allCheckboxesCheck){
         return;

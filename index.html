@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="script.js" defer></script>
     <title>Todo App</title>
 </head>
@@ -13,15 +14,15 @@
             <h1>todos</h1>
         </header>
         <main>
-            <input type="checkbox" id="checkAllButton">
             <form id="input-form">
+                <input type="checkbox" id="checkAllButton" class="material-icons">
                 <input id="new-item" placeholder="What needs to be done?">
             </form>
             <ul id="todo-list">
                 <template id="template-item">
                     <li class="todo-item">
                         <input type="checkbox" class="todo-checkbox">
-                        <span class="todo-text">1st todo item</span>
+                        <label class="todo-text">1st todo item</label>
                         <button class="todo-delete">❌</button>
                     </li>
                 </template>
@@ -29,15 +30,16 @@
             <div id="action-bar" class="hidden">
                 <span id="counter">0 items left</span>
                 <ul class="filter">
-                    <li><button class="filter-button" id="show-all" >All</button></li>
-                    <li><button class="filter-button" id="hide-completed">Active</button></li>
-                    <li><button class="filter-button" id="hide-notCompleted">Completed</button></li>
+                    <li><button class="action-button" id="show-all" >All</button></li>
+                    <li><button class="action-button" id="hide-completed">Active</button></li>
+                    <li><button class="action-button" id="hide-notCompleted">Completed</button></li>
                 </ul>
-                <button id="clear-completed">Clear Completed</button>
+                <button class="action-button" id="clear-completed">Clear Completed</button>
             </div>
         </main>
         <footer>
-            <p>copyright info and such imporant stuffs</p>
+            <p>Written by</p>
+            <p>Andreas Halleröd & Sebastian Schavon</p>
         </footer>
     </div>
 </body>
