@@ -13,6 +13,7 @@ const checkAllButton = document.querySelector('#checkAllButton');
 
 newTodoForm.onsubmit = event => {
     createNewTodo(event);
+    controlVisibility();
 }
 
 
@@ -37,6 +38,7 @@ function createNewTodo(event){
     const deleteButton = newTodoItem.querySelector('.todo-delete');
     deleteButton.onclick = event => {
         deleteItem(newTodoItem);
+        controlVisibility();
         /*newTodoItem.remove();
         allItems = document.querySelectorAll('.todo-item');
         allCheckboxes = document.querySelectorAll('.todo-item .todo-checkbox');
@@ -46,8 +48,8 @@ function createNewTodo(event){
 
     const checkbox = newTodoItem.querySelector('.todo-checkbox');
     checkbox.onclick = event => {
-        updateCounter();
         currentFilterFunction(currentFilter);
+        controlVisibility();
     }
 }
 
@@ -55,8 +57,7 @@ function deleteItem(item){
     item.remove();
     allItems = document.querySelectorAll('.todo-item');
     allCheckboxes = document.querySelectorAll('.todo-item .todo-checkbox');
-    updateCounter();
-    showOrHideActionBar();
+    controlVisibility();
 }
 
 function showOrHideActionBar(){
@@ -77,7 +78,7 @@ const clearCompletedButton = document.querySelector('#clear-completed');
 let allItems = document.querySelectorAll('.todo-item'); //TO be removed.
 const getAllItems = () => {
     return document.querySelectorAll('.todo-item'); //Andreas Experiment: Working!
- } 
+} 
 let allCheckboxes = document.querySelectorAll('.todo-item .todo-checkbox');
 
 
@@ -110,6 +111,8 @@ function clearFilterActiveStyles(){
 
 clearCompletedButton.onclick = event => {
     removeCompleted(event);
+    controlVisibility();
+    checkAllButton.checked = false;
 }
 
 function showAllItems(){
@@ -151,7 +154,7 @@ function hideNotCompleted(){
 
 function removeCompleted(){
     for(let todo of getAllItems()){
-        if(todo.querySelector('.todo-checkbox:checked') != null){
+        if(todo.queryAllSelector('.todo-checkbox:checked') != null){
             deleteItem(todo);
         }
     }
@@ -175,22 +178,15 @@ function currentFilterFunction(currentFilterPar){
 }
 
 checkAllButton.onclick = event =>{
-    if(!allCheckboxesCheck){
-        return;
-    }
-
-    if(checkAllButton.checked == true){
-        checkAllCheckboxes();
-    }
-    else if(checkAllButton.checked == false){
+    if(allCheckboxesCheck()){
         uncheckAllCheckboxes();
-        
+        checkAllButton.checked = false;
+    } else {
+        checkAllCheckboxes();
+       checkAllButton.checked = true;
     }
-
     currentFilterFunction(currentFilter);
-
-    updateCounter();
-    
+    controlVisibility()
 }
 
 function checkAllCheckboxes(){
@@ -206,13 +202,51 @@ function uncheckAllCheckboxes(){
 }
 
 function allCheckboxesCheck(){
-    for (var i = 0; i < allCheckboxes.length; i++) {
-        if (allCheckboxes[i].checked) {
-          return true;
-        }
-      }
+    if(getAllItems().length == document.querySelectorAll('.todo-checkbox:checked').length)
+        return true
     return false;
 }
+
+function anyCheckboxChecked(){
+    return document.querySelectorAll('.todo-checkbox:checked').length > 0 ? true : false;
+}
+
+function controlVisibility(){
+    hideOrShowClearButton();
+    hideOrShowCheckAllButton();
+    showOrHideActionBar();
+    updateCounter();
+    currentFilterFunction(currentFilter);
+}
+
+function hideOrShowCheckAllButton(){
+    if(getAllItems().length > 0){
+        checkAllButton.classList.remove('hidden');
+        if(allCheckboxesCheck())
+            checkAllButton.checked = true;
+        else
+            checkAllButton.checked = false;
+    } else {
+        checkAllButton.classList.add('hidden');
+        checkAllButton.checked = false;
+    }
+}
+
+function hideOrShowClearButton(){
+    if(!anyCheckboxChecked())
+        clearCompletedButton.classList.add('hidden');
+    else
+        clearCompletedButton.classList.remove('hidden');
+}
+
+function removeCompleted(){
+    for(let todo of getAllItems()){
+        if(todo.querySelector('.todo-checkbox:checked') != null){
+            deleteItem(todo);
+        }
+    }
+}
+
 
 
 // const itemCheckbox = document.querySelector('.todo-checkbox');

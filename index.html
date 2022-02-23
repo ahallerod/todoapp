@@ -15,8 +15,8 @@
         </header>
         <main>
             <form id="input-form">
-                <input type="checkbox" id="checkAllButton" class="material-icons">
-                <input id="new-item" placeholder="What needs to be done?">
+                <input type="checkbox" id="checkAllButton" class="material-icons hidden">
+                <input id="new-item" placeholder="What needs to be done?" autocomplete="off">
             </form>
             <ul id="todo-list">
                 <template id="template-item">
@@ -34,7 +34,7 @@
                     <li><button class="action-button" id="hide-completed">Active</button></li>
                     <li><button class="action-button" id="hide-notCompleted">Completed</button></li>
                 </ul>
-                <button class="action-button" id="clear-completed">Clear Completed</button>
+                <button class="action-button hidden" id="clear-completed">Clear Completed</button>
             </div>
         </main>
         <footer>

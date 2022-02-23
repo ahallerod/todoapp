@@ -35,18 +35,19 @@ main {
 
 #input-form {
     display: grid;
-    grid-template-columns: 4rem auto;
+    grid-template: 'a b' / 4rem auto;
     align-items: center;
     justify-items: center;
     box-shadow: inset 0 -2px 1px rgb(0 0 0 / 3%);
 }
 
-.checkAllButton {
-
+#checkAllButton {
+    grid-area: a;
 }
 
 
 #new-item {
+    grid-area: b;
     font-size: 2em;
     color:rgb(77, 77, 77);
     width: 100%;
